@@ -20,7 +20,7 @@ export class BranchComponent implements OnInit, AfterViewInit {
   //* stage properties
 
   @Input() public cameraZ: number = 400;
-  @Input() public fieldOfView: number = 1;
+  @Input() public fieldOfView: number = 0.5;
   @Input('nearClipping') public nearClippingPlane: number = 1;
   @Input('farClipping') public farClippingPLane: number = 1000;
 
@@ -33,7 +33,7 @@ export class BranchComponent implements OnInit, AfterViewInit {
   }
 
   private loader = new THREE.TextureLoader();
-  private geometry = new THREE.BoxGeometry(1, 1, 1);
+  private geometry = new THREE.BoxGeometry(0.5, 1, 0.5);
   private material = new THREE.MeshBasicMaterial({ map: this.loader.load(this.texture) });
 
   private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material);

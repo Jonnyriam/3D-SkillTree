@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { BranchComponent } from './branch/branch.component';
+import { BranchComponent } from './branches/branch/branch.component';
+import { BranchesComponent } from './branches/branches.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BranchComponent
+    BranchComponent,
+    BranchesComponent
   ],
   imports: [
     BrowserModule
