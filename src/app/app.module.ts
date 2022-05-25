@@ -2,19 +2,19 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { BranchComponent } from './branches/branch/branch.component';
-import { BranchesComponent } from './branches/branches.component';
+import { EngineComponent } from './engine/engine.component';
+import { CameraService } from './shared/camera.service';
+import { SceneService } from './shared/scene.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BranchComponent,
-    BranchesComponent
+    EngineComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [SceneService, CameraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
