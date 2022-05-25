@@ -1,22 +1,30 @@
-import { ElementRef, Injectable, Renderer2 } from "@angular/core";
+import { ElementRef, Injectable } from "@angular/core";
 import * as THREE from "three";
-import { EngineComponent } from "../engine/engine.component";
 
+import { EngineComponent } from "../engine/engine.component";
 import { CameraService } from "./camera.service";
 
 @Injectable()
 export class SceneService {
 
+  meshArray: THREE.Mesh[] = [];
   scene: THREE.Scene;
   canvas: HTMLCanvasElement;
   component: EngineComponent;
 
-  private cubeRef: THREE.Mesh;
+  private geometry = new THREE.BoxGeometry(0.5, 1, 0.5);
+  private material = new THREE.MeshPhongMaterial({ color: 0x6b1913, flatShading: true });
+
+  cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material);
 
   constructor(private camService: CameraService) { }
 
   getCanvas(canvas: ElementRef<HTMLCanvasElement>) {
     this.canvas = canvas.nativeElement;
+  }
+
+  getRendererRef(rendererRef:THREE.WebGLRenderer) {
+    this.camService.getRendererRef(rendererRef);
   }
 
   //CamService Related
@@ -27,16 +35,46 @@ export class SceneService {
     return this.camService.getCamera();
   }
 
-  createScene(cube: THREE.Mesh) {
-    this.cubeRef = cube;
+  createScene() {
     console.log("i'm here on the createScene");
 
     //Scene
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0xbc85a3);
 
-    cube.rotateX(0.5);
-    this.scene.add(cube);
+    this.cube.rotateX(0.5);
+
+    let i = 27;
+    let even = 0;
+    let odd = 0;
+
+    while (i != 1) {
+      if (i == 123) {
+        this.scene.add(this.cube);
+        //this.meshArray.push(this.cube);
+      }
+      if (i % 2 == 1) {
+        i = (i * 3) + 1;
+        let mesh = this.cube.clone();
+        mesh.rotateX(odd * 0.01);
+        mesh.translateY(odd+0.01);
+        this.scene.add(mesh);
+        this.meshArray.push(mesh);
+        odd++;
+      }
+      else if (i % 2 == 0) {
+        i /= 2;
+        let mesh = this.cube.clone();
+        mesh.rotateX(even * 0.2);
+        mesh.rotateZ(even * 0.02);
+        mesh.translateY(even);
+        this.scene.add(mesh);
+        this.meshArray.push(mesh);
+        even++;
+      }
+    }
+    console.log("amount of even: " + even);
+    console.log("amount of odds: " + odd);
 
     //Creates the camera
     this.camService.createCamera();

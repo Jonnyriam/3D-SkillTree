@@ -1,19 +1,31 @@
 import { ElementRef, Injectable } from "@angular/core";
 
 import * as THREE from "three";
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
 @Injectable()
 export class CameraService {
   private canvas: HTMLCanvasElement;
   camera: THREE.PerspectiveCamera;
-
+  private renderer!: THREE.WebGLRenderer;
   //camera Properties
   cameraZ: number = 400;
   public fieldOfView: number = 0.5;
   public nearClippingPlane: number = 1;
-  public farClippingPLane: number = 1000;
+  public farClippingPLane: number = 10000;
 
   getCamera() {
-    return this.camera;
+    if(this.camera != null)
+      return this.camera;
+    else {
+      this.createCamera();
+      return this.camera
+    }
+  }
+
+  getRendererRef(renderer: THREE.WebGLRenderer) {
+    this.renderer = renderer;
+    console.log(this.renderer);
   }
 
   getCanvasRef(canvas: ElementRef<HTMLCanvasElement>) {
