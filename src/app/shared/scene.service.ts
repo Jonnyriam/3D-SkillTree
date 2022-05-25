@@ -1,28 +1,40 @@
-import { ElementRef, Injectable } from "@angular/core";
+import { ElementRef, Injectable, Renderer2 } from "@angular/core";
 import * as THREE from "three";
+import { EngineComponent } from "../engine/engine.component";
 
 import { CameraService } from "./camera.service";
 
 @Injectable()
 export class SceneService {
+
   scene: THREE.Scene;
+  canvas: HTMLCanvasElement;
+  component: EngineComponent;
+
+  private cubeRef: THREE.Mesh;
 
   constructor(private camService: CameraService) { }
 
+  getCanvas(canvas: ElementRef<HTMLCanvasElement>) {
+    this.canvas = canvas.nativeElement;
+  }
+
+  //CamService Related
   getCanvasRef(canvasRef: ElementRef<HTMLCanvasElement>) {
     this.camService.getCanvasRef(canvasRef);
   }
-
   getCamera() {
     return this.camService.getCamera();
   }
 
   createScene(cube: THREE.Mesh) {
-
+    this.cubeRef = cube;
     console.log("i'm here on the createScene");
+
     //Scene
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0xbc85a3);
+
     cube.rotateX(0.5);
     this.scene.add(cube);
 
@@ -38,4 +50,16 @@ export class SceneService {
     const ambientLight = new THREE.AmbientLight( 0xffffff );
 		this.scene.add( ambientLight );
   }
+
+  // animate() {
+  //   requestAnimationFrame(this.render.bind(this.scene));
+  //   this.animateCube();
+  //   //controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true
+  //   this.render();
+
+  // }
+
+  // render() {
+  //   this.renderer.render(this.scene, this.getCamera());
+  // }
 }

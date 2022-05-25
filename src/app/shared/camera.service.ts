@@ -20,12 +20,11 @@ export class CameraService {
   }
 
   private getAspectRatio() {
-    return this.canvas.clientWidth / this.canvas.clientHeight;
+    return window.innerWidth / window.innerHeight;
   }
 
   //Camera
   createCamera() {
-    console.log("i'm here");
     let aspectRatio = this.getAspectRatio();
     this.camera = new THREE.PerspectiveCamera(
       this.fieldOfView,
