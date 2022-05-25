@@ -1,6 +1,7 @@
-import { ElementRef } from "@angular/core";
-import * as THREE from "three";
+import { ElementRef, Injectable } from "@angular/core";
 
+import * as THREE from "three";
+@Injectable()
 export class CameraService {
   private canvas: HTMLCanvasElement;
   camera: THREE.PerspectiveCamera;
