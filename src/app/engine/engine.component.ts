@@ -14,7 +14,7 @@ export class EngineComponent implements OnInit, AfterViewInit {
   @HostListener('window:resize') onResize() {
     this.sceneService.getCamera().aspect = window.innerWidth / window.innerHeight;
     this.sceneService.getCamera().updateProjectionMatrix();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize((window.innerWidth / 2), (window.innerHeight / 2));
   }
   @ViewChild('canvas') private canvasRef: ElementRef;
 
@@ -59,7 +59,7 @@ export class EngineComponent implements OnInit, AfterViewInit {
     //Creates the renderer
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
     this.renderer.setPixelRatio(devicePixelRatio);
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(window.innerWidth / 1.5, window.innerHeight / 1.5);
 
     let component: EngineComponent = this;
     (function render() {

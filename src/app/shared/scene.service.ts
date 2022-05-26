@@ -44,7 +44,7 @@ export class SceneService {
 
     this.cube.rotateX(0.5);
 
-    let i = 27;
+    let i = 41;
     let even = 0;
     let odd = 0;
 
@@ -65,7 +65,7 @@ export class SceneService {
       else if (i % 2 == 0) {
         i /= 2;
         let mesh = this.cube.clone();
-        mesh.rotateX(even * 0.2);
+        //mesh.rotateX(even * 0.2);
         mesh.rotateZ(even * 0.02);
         mesh.translateY(even);
         this.scene.add(mesh);

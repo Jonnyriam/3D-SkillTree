@@ -10,7 +10,7 @@ export class CameraService {
   private renderer!: THREE.WebGLRenderer;
   //camera Properties
   cameraZ: number = 400;
-  public fieldOfView: number = 0.5;
+  public fieldOfView: number = 1;
   public nearClippingPlane: number = 1;
   public farClippingPLane: number = 10000;
 
