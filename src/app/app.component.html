@@ -10,21 +10,49 @@
     />
   </div>
 </nav>
-<div class="container d-flex h-100">
-  <div class="row justify-content-center align-items-center">
-    <div class="col align-items-center">
-      <span>
-        <a href="#">No where</a>
-      </span>
-      <span>
-        <a href="#">No where</a>
-      </span>
-      <span>
-        <a href="#">No where</a>
-      </span>
-      <span>
-        <a href="#">No where</a>
-      </span>
+
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-auto col-xl-2 col-md-3 px-sm-2 px-0 bg-dark">
+      <div
+        class="d-flex flex-column align-items-center align-items-sm-start text-white min-vh-50"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center pb-3 mb-md-0 text-white text-decoration-none"
+          ><span class="fs-5 d-none align-items-center d-sm-inline"
+            >Menu</span
+          ></a
+        >
+        <ul
+          class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+          id="menu"
+        >
+          <li class="nav-item">
+            <a href="#" class="nav-link align-middle px-0">
+              <i class="fs-4 bi-house">
+                <span class="ms-1 d-none d-sm-inline">Home</span>
+              </i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#submenu1"
+              data-bs-toggle="collapse"
+              class="nav-link px-0 align-middle"
+            >
+              <i class="fs-4 bi-speedometer2"></i>
+              <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-0 align-middle">
+              <i class="fs-4 bi-table"></i>
+              <span class="ms-1 d-none d-sm-inline">Orders</span></a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="col align-items-center">
       <app-engine></app-engine>

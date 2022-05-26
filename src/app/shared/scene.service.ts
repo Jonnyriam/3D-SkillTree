@@ -44,7 +44,7 @@ export class SceneService {
 
     this.cube.rotateX(0.5);
 
-    let i = 41;
+    let i = 27;
     let even = 0;
     let odd = 0;
 
