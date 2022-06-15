@@ -1,6 +1,6 @@
-import { ElementRef, Injectable } from "@angular/core";
+import { ElementRef, Injectable } from '@angular/core';
 
-import * as THREE from "three";
+import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 @Injectable()
@@ -15,17 +15,17 @@ export class CameraService {
   public farClippingPLane: number = 10000;
 
   getCamera() {
-    if(this.camera != null)
+    if (this.camera != null) {
+      //console.log(this.camera.position);
       return this.camera;
-    else {
+    } else {
       this.createCamera();
-      return this.camera
+      return this.camera;
     }
   }
 
   getRendererRef(renderer: THREE.WebGLRenderer) {
     this.renderer = renderer;
-    console.log(this.renderer);
   }
 
   getCanvasRef(canvas: ElementRef<HTMLCanvasElement>) {
@@ -44,7 +44,9 @@ export class CameraService {
       aspectRatio,
       this.nearClippingPlane,
       this.farClippingPLane
-    )
-    this.camera.position.z = this.cameraZ;
+    );
+    this.camera.position.set(0, -400, 600);
+    //this.camera.position.z = this.cameraZ;
+    //console.log(this.camera.position);
   }
 }
